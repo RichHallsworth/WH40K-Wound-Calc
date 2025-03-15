@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 export default function App() {
-  const [strength, setStrength] = useState(4);
-  const [toughness, setToughness] = useState(4);
+  const [strength, setStrength] = useState("4");   // Store as strings
+  const [toughness, setToughness] = useState("4"); // Store as strings
 
   const calculateWoundRoll = (s, t) => {
     if (s >= t * 2) return '2+';
@@ -12,33 +12,39 @@ export default function App() {
     return '5+';
   };
 
-  const woundRoll = calculateWoundRoll(strength, toughness);
+  const numericStrength = parseInt(strength, 10) || 0;
+  const numericToughness = parseInt(toughness, 10) || 0;
+
+  const woundRoll =
+    numericStrength > 0 && numericToughness > 0
+      ? calculateWoundRoll(numericStrength, numericToughness)
+      : '–';
 
   return (
-    <div style={{padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto'}}>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto' }}>
       <h2>🎲 Strength vs Toughness 🎲</h2>
 
       <div>
-        <label>Strength:</label><br/>
+        <label>Strength:</label><br />
         <input
           type="number"
           value={strength}
-          onChange={(e) => setStrength(Number(e.target.value))}
-          style={{padding: '8px', width: '100%', marginBottom: '10px'}}
+          onChange={(e) => setStrength(e.target.value)}
+          style={{ padding: '8px', width: '100%', marginBottom: '10px' }}
         />
       </div>
 
       <div>
-        <label>Toughness:</label><br/>
+        <label>Toughness:</label><br />
         <input
           type="number"
           value={toughness}
-          onChange={(e) => setToughness(Number(e.target.value))}
-          style={{padding: '8px', width: '100%', marginBottom: '10px'}}
+          onChange={(e) => setToughness(e.target.value)}
+          style={{ padding: '8px', width: '100%', marginBottom: '10px' }}
         />
       </div>
 
-      <div style={{marginTop: '20px', fontSize: '18px'}}>
+      <div style={{ marginTop: '20px', fontSize: '18px' }}>
         🎯 <strong>You need to roll: {woundRoll}</strong>
       </div>
     </div>
