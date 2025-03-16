@@ -23,10 +23,13 @@ a:hover {
 }
 
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  padding: 0 10px; /* Adds horizontal padding on mobile */
+  box-sizing: border-box; /* Ensures padding doesn't add extra width */
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -64,3 +67,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Removes number input arrows in WebKit-based browsers (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Removes number input arrows in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  text-align: center; /* Also centers numbers consistently */
+}
+
