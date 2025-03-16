@@ -21,7 +21,12 @@ export default function App() {
       : '–';
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '0 auto', marginTop: '40px' }}>
+    <div style={{
+      padding: '20px',
+      fontFamily: 'sans-serif',
+      maxWidth: '400px',
+      margin: '40px auto 20px' // top margin, auto sides, bottom margin
+    }}>
       <h2>🎲 Strength vs Toughness 🎲</h2>
 
       <div>
