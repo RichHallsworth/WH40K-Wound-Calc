@@ -63,7 +63,7 @@ export default function App() {
       maxWidth: '400px', margin: '20px auto', color: '#ffffff'
     }}>
       {/* Header Graphic */}
-      <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <img src={headerImage} alt="Warhammer 40K Companion" style={{ width: '100%', maxWidth: '350px' }} />
       </div>
 
