@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --input-button-size: 40px; /* Adjust here if needed */
 }
 
 a {
@@ -85,3 +87,60 @@ input[type=number] {
   text-align: center; /* Also centers numbers consistently */
 }
 
+/* Remove focus outlines and highlights from buttons and inputs */
+button, input {
+  outline: none;
+}
+
+/* Remove blue highlight on tap/click (mobile devices and desktop) */
+button:focus, button:active,
+input:focus, input:active {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Specifically targets icon buttons (plus/minus buttons only) */
+.icon-button {
+  height: var(--input-button-size);
+  width: var(--input-button-size);
+  padding: 0;
+  margin: 0 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-button img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Specifically targets input fields to match icon buttons */
+input[type=number] {
+  height: var(--input-button-size);
+  width: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0 5px;
+}
+
+/* Reset button: maintains its original sizing and centering */
+.reset-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.reset-button img {
+  width: 175px; /* original desired width */
+  height: auto; /* maintain natural ratio */
+  object-fit: contain;
+}
