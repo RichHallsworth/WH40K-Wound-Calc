@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import headerImage from './assets/header.png';
+
 
 export default function App() {
   const [strength, setStrength] = useState(4);
@@ -18,7 +20,14 @@ export default function App() {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '400px', margin: '40px auto' }}>
-      <h2 style={{ textAlign: 'center' }}>🎲 Strength vs Toughness 🎲</h2>
+      <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+  <img 
+    src={headerImage} 
+    alt="Warhammer 40K Companion" 
+    style={{ width: '100%', maxWidth: '400px' }} 
+  />
+</div>
+
 
       <div style={{ marginBottom: '15px' }}>
         <label style={{ marginBottom: '5px', display: 'block', textAlign: 'center' }}>Strength:</label>
@@ -33,14 +42,12 @@ export default function App() {
   style={{ 
     padding: '10px', 
     width: '60px', 
-    textAlign: 'center',          // Centers numbers in input
+    textAlign: 'center',  // Centers numbers
     margin: '0 5px', 
     fontSize: '16px',
-    WebkitAppearance: 'none',     // Removes arrows (Chrome, Safari, Edge)
-    MozAppearance: 'textfield',   // Removes arrows (Firefox)
-    appearance: 'textfield'       // Ensures removal in other browsers
   }}
 />
+
           <button 
             onClick={() => setStrength(adjustValue(strength, 1))}
             style={{ padding: '10px', fontSize: '18px' }}>+</button>
@@ -54,20 +61,18 @@ export default function App() {
             onClick={() => setToughness(adjustValue(toughness, -1))}
             style={{ padding: '10px', fontSize: '18px' }}>-</button>
           <input
-            type="number"
-            value={toughness}
-            onChange={(e) => setToughness(Number(e.target.value) || 1)}
+  type="number"
+  value={toughness}
+  onChange={(e) => setToughness(Number(e.target.value) || 1)}
   style={{ 
     padding: '10px', 
     width: '60px', 
-    textAlign: 'center',          // Centers numbers in input
+    textAlign: 'center',  // Centers numbers
     margin: '0 5px', 
     fontSize: '16px',
-    WebkitAppearance: 'none',     // Removes arrows (Chrome, Safari, Edge)
-    MozAppearance: 'textfield',   // Removes arrows (Firefox)
-    appearance: 'textfield'       // Ensures removal in other browsers
   }}
 />
+
           <button 
             onClick={() => setToughness(adjustValue(toughness, 1))}
             style={{ padding: '10px', fontSize: '18px' }}>+</button>

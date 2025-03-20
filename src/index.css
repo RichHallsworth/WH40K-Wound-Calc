@@ -28,6 +28,8 @@ body {
   margin: 0;
   padding: 0 10px; /* Adds horizontal padding on mobile */
   box-sizing: border-box; /* Ensures padding doesn't add extra width */
+  background-color: #1A1A1A; /* <-- Your new dark background */
+  color: #ffffff; /* ensure text stays readable */
 }
 
 
@@ -55,10 +57,10 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #1A1A1A;
   }
   a:hover {
     color: #747bff;
