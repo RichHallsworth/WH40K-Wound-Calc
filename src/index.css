@@ -144,3 +144,21 @@ input[type=number] {
   height: auto; /* maintain natural ratio */
   object-fit: contain;
 }
+
+input[type=number] {
+  background-color: #2E2E2E;
+  font-weight: bold;
+  font-size: larger;
+  color: #fff;
+  border: none;
+}
+
+@keyframes numberPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.number-animate {
+  animation: numberPulse 0.3s ease-in-out;
+}

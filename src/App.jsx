@@ -12,23 +12,75 @@ import resetImage from './assets/reset.png';
 import strengthToughnessImage from './assets/strength-toughness.png';
 
 // Reusable component for graphic tracker inputs
-const GraphicTrackerInput = ({ labelImage, value, setValue, min = 0, max = 100, step = 1 }) => (
-  <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-    {labelImage && <img src={labelImage} style={{ maxWidth: '150px', marginBottom: '5px' }} />}
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <button className="icon-button"
-        onClick={() => setValue(Math.max(min, value - step))}>
-        <img src={minusImage} alt="minus" />
-      </button>
-      <input type="number" value={value}
-        onChange={(e) => setValue(Number(e.target.value) || min)} />
-      <button className="icon-button"
-        onClick={() => setValue(Math.min(max, value + step))}>
-        <img src={plusImage} alt="plus" />
-      </button>
+const GraphicTrackerInput = ({ labelImage, value, setValue, min = 0, max = 100, step = 1 }) => {
+  const [animate, setAnimate] = useState(false);
+
+  const triggerAnimation = () => {
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 200); // animation duration (match your CSS)
+  };
+
+  const updateValue = (newValue) => {
+    setValue(newValue);
+    triggerAnimation();
+  };
+
+  return (
+    <div style={{ marginBottom: '15px', textAlign: 'center', position: 'relative' }}>
+      {labelImage && <img src={labelImage} style={{ maxWidth: '150px', marginBottom: '5px' }} />}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button className="icon-button"
+          onClick={() => updateValue(Math.max(min, value - step))}>
+          <img src={minusImage} alt="minus" />
+        </button>
+
+        <div style={{ position: 'relative', width: '50px', height: '40px', margin: '0 5px' }}>
+          <input
+            type="number"
+            value={value}
+            onChange={(e) => setValue(Number(e.target.value) || min)}
+            style={{
+              height: '100%',
+              width: '100%',
+              textAlign: 'center',
+              boxSizing: 'border-box',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              backgroundColor: '#2E2E2E',
+              color: '#fff',
+              border: 'none',
+              fontSize: '16px',
+            }}
+          />
+          <div className={animate ? 'number-animate' : ''}
+            style={{
+              pointerEvents: 'none',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: '#fff',
+              fontSize: '16px',
+              fontWeight: 'bold',
+            }}>
+            {value}
+          </div>
+        </div>
+
+        <button className="icon-button"
+          onClick={() => updateValue(Math.min(max, value + step))}>
+          <img src={plusImage} alt="plus" />
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
 
 export default function App() {
   const [turn, setTurn] = useState(1);
