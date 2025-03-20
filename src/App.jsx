@@ -2,27 +2,6 @@ import { useState } from 'react';
 
 import { useEffect } from 'react';
 
-// Load game state from localStorage on app start
-useEffect(() => {
-  const savedState = localStorage.getItem('warhammerGameState');
-  if (savedState) {
-    const { turn, cp, yourScore, opponentScore, strength, toughness } = JSON.parse(savedState);
-    setTurn(turn);
-    setCp(cp);
-    setYourScore(yourScore);
-    setOpponentScore(opponentScore);
-    setStrength(strength);
-    setToughness(toughness);
-  }
-}, []);
-
-// Save game state to localStorage whenever these values change
-useEffect(() => {
-  const gameState = { turn, cp, yourScore, opponentScore, strength, toughness };
-  localStorage.setItem('warhammerGameState', JSON.stringify(gameState));
-}, [turn, cp, yourScore, opponentScore, strength, toughness]);
-
-
 // Import graphic assets (ensure paths match exactly!)
 import headerImage from './assets/header.png';
 import plusImage from './assets/plus.png';
@@ -130,6 +109,26 @@ export default function App() {
     setOpponentScore(0);
     setStrength(4);
     setToughness(4);
+
+      // Load game state from localStorage on app start
+useEffect(() => {
+  const savedState = localStorage.getItem('warhammerGameState');
+  if (savedState) {
+    const { turn, cp, yourScore, opponentScore, strength, toughness } = JSON.parse(savedState);
+    setTurn(turn);
+    setCp(cp);
+    setYourScore(yourScore);
+    setOpponentScore(opponentScore);
+    setStrength(strength);
+    setToughness(toughness);
+  }
+  }, []);
+
+// Save game state to localStorage whenever these values change
+useEffect(() => {
+  const gameState = { turn, cp, yourScore, opponentScore, strength, toughness };
+  localStorage.setItem('warhammerGameState', JSON.stringify(gameState));
+  }, [turn, cp, yourScore, opponentScore, strength, toughness]);
   };
 
   return (
